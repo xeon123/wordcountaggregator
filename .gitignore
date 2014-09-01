@@ -1,0 +1,7 @@
+.classpath
+.gitinore
+.project
+.settings
+bin
+build/classes
+lib

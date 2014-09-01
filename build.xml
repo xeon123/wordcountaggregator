@@ -1,0 +1,29 @@
+<project>
+  <property name="lib.dir" value="lib"/>
+
+  <path id="classpath">
+    <fileset dir="${lib.dir}" includes="**/*.jar"/>
+  </path>
+  
+  <target name="clean">
+    <delete dir="build"/>
+  </target>
+  
+  <target name="compile" depends="clean">
+    <mkdir dir="build/classes"/>
+    <javac srcdir="src" destdir="build/classes"  classpathref="classpath" source="1.6" target="1.6" debug="on"/>
+  </target>
+  
+  <target name="jar" depends="compile">
+    <mkdir dir="build/jar"/>
+    <jar destfile="build/jar/countlinesaggregator.jar" basedir="build/classes">
+      <manifest>
+        <attribute name="Main-Class" value="org.apache.hadoop.examples.CountLinesAggregator"/>
+      </manifest>
+    </jar>
+  </target>
+  
+  <target name="run">
+    <java jar="build/jar/countlinesaggregator.jar" fork="true"/>
+  </target>
+</project>
